@@ -24,7 +24,7 @@ impl Triangle {
         let uy = ((pa.x * pa.x + pa.y * pa.y) * (pc.x - pb.x) + 
                   (pb.x * pb.x + pb.y * pb.y) * (pa.x - pc.x) +
                   (pc.x * pc.x + pc.y * pc.y) * (pb.x - pa.x)) / d;
-        let center = Point { x: ux, y: uy };
+        let _center = Point { x: ux, y: uy };
         let radius = ((pa.x -ux).powi(2) + (pa.y - uy).powi(2)).sqrt();
 
         let distance = ((point.x - ux).powi(2) + (point.y - uy).powi(2)).sqrt();
