@@ -4,7 +4,7 @@ use std::process::Command;
 
 #[test]
 fn cdt_cli() -> Result<(), Box<dyn std::error::Error>> {
-    let mut cmd = Command::cargo_bin("cdt_rs")?;
+    let mut cmd = Command::cargo_bin("cdt-rs")?;
 
     cmd.assert()
         .success()
