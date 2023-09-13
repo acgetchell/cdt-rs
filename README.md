@@ -1,4 +1,4 @@
-# cdt
+# cdt-rs
 
 [![CI](https://github.com/acgetchell/cdt/actions/workflows/ci.yml/badge.svg)](https://github.com/acgetchell/cdt/actions/workflows/ci.yml)
 
