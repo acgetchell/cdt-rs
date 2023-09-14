@@ -9,6 +9,7 @@
         "autocfg",
         "bstr",
         "circumcircle",
+        "Codecov",
         "corasick",
         "difflib",
         "itertools",
