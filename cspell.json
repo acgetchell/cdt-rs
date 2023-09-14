@@ -5,8 +5,25 @@
     "dictionaries": [],
     "words": [
         "acgetchell",
+        "anstyle",
+        "autocfg",
+        "bstr",
         "circumcircle",
-        "powi"
+        "corasick",
+        "difflib",
+        "itertools",
+        "kani",
+        "libc",
+        "memchr",
+        "powi",
+        "serde",
+        "termtree",
+        "xcenter",
+        "xmax",
+        "xmin",
+        "ycenter",
+        "ymax",
+        "ymin"
     ],
     "ignoreWords": [],
     "import": []

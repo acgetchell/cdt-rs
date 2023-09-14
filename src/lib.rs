@@ -1,3 +1,5 @@
+use float_ord::sort;
+
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Point {
     pub x: f64,
@@ -31,6 +33,27 @@ impl Triangle {
 
         let distance = ((point.x - ux).powi(2) + (point.y - uy).powi(2)).sqrt();
         distance < radius
+    }
+
+    pub fn center(&self) -> Point {
+        let [pa, pb, pc] = self.vertices;
+
+        let mut x = [pa.x, pb.x, pc.x];
+        float_ord::sort(&mut x);
+        let xmin = x.first().unwrap();
+        let xmax = x.last().unwrap();
+        let xcenter = (xmax - xmin) / 2.0;
+
+        let mut y = [pa.y, pb.y, pc.y];
+        float_ord::sort(&mut y);
+        let ymin = y.first().unwrap();
+        let ymax = y.last().unwrap();
+        let ycenter = (ymax - ymin) / 2.0;
+
+        Point {
+            x: xcenter,
+            y: ycenter,
+        }
     }
 }
 
@@ -107,4 +130,55 @@ fn delaunay_triangulation_construction() {
             Point { x: 0.5, y: 1.0 },
         ]
     }));
+}
+
+#[test]
+fn triangle_center() {
+    let triangle = Triangle {
+        vertices: [
+            Point { x: 0.0, y: 0.0 },
+            Point { x: 1.0, y: 0.0 },
+            Point { x: 0.0, y: 1.0 },
+        ],
+    };
+
+    let center = triangle.center();
+    println!("{:?}", center);
+    assert_eq!(center, Point { x: 0.5, y: 0.5 });
+}
+
+#[cfg(kani)]
+mod verification {
+    use super::*;
+
+    #[kani::proof]
+    fn success_example() {
+        let mut sum = 0;
+        for i in 1..4 {
+            sum += i;
+        }
+        assert_eq!(sum, 6);
+    }
+
+    // #[kani::proof]
+    // pub fn triangle_contains_vertex() {
+    //     let factor: f64 = kani::any();
+    //     let triangle = Triangle {
+    //         vertices: [
+    //             Point { x: 0.0, y: 0.0 },
+    //             Point { x: 1.0 * factor, y: 0.0 },
+    //             Point { x: 0.0, y: 1.0 * factor },
+    //         ],
+    //     };
+
+    //     let small_triangle = Triangle {
+    //         vertices: [
+    //             Point { x: 0.0, y: 0.0 },
+    //             Point { x: 1.0, y: 0.0 },
+    //             Point { x: 0.0, y: 1.0 },
+    //         ],
+    //     };
+    //     let center = small_triangle.center();
+    //     assert!(triangle.contains_vertex(&center));
+    // }
 }

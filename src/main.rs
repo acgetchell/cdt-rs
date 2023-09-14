@@ -9,6 +9,10 @@ fn main() {
 
     let triangulation = bowyer_watson(points);
     for triangle in triangulation {
-        println!("{:?}", triangle.vertices);
+        println!(
+            "Triangle: {:?} Center: {:?}",
+            triangle.vertices,
+            triangle.center()
+        );
     }
 }
