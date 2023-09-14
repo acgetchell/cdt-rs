@@ -1,12 +1,32 @@
+pub fn run(number_of_vertices: u32) -> Result<(), Box<dyn std::error::Error>> {
+    println!("Number of vertices: {}", number_of_vertices);
+    let points = vec![
+        Point { x: 0.0, y: 0.0 },
+        Point { x: 1.0, y: 0.0 },
+        Point { x: 0.5, y: 1.0 },
+    ];
+
+    let triangulation = bowyer_watson(points);
+    for triangle in triangulation {
+        println!(
+            "Triangle: {:?} Center: {:?}",
+            triangle.vertices,
+            triangle.center()
+        );
+    }
+
+    Ok(())
+}
+
 #[derive(Debug, PartialEq, Clone, Copy)]
-pub struct Point {
-    pub x: f64,
-    pub y: f64,
+struct Point {
+    x: f64,
+    y: f64,
 }
 
 #[derive(PartialEq, Clone, Copy)]
 pub struct Triangle {
-    pub vertices: [Point; 3],
+    vertices: [Point; 3],
 }
 
 impl Triangle {
@@ -33,7 +53,7 @@ impl Triangle {
         distance < radius
     }
 
-    pub fn center(&self) -> Point {
+    fn center(&self) -> Point {
         let [pa, pb, pc] = self.vertices;
 
         let mut x = [pa.x, pb.x, pc.x];
@@ -55,7 +75,7 @@ impl Triangle {
     }
 }
 
-pub fn bowyer_watson(points: Vec<Point>) -> Vec<Triangle> {
+fn bowyer_watson(points: Vec<Point>) -> Vec<Triangle> {
     let mut triangles = Vec::new();
 
     // Create a super-triangle that contains all points

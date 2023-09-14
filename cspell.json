@@ -12,6 +12,7 @@
         "Codecov",
         "corasick",
         "difflib",
+        "Getchell",
         "itertools",
         "kani",
         "libc",
