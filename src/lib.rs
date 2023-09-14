@@ -149,36 +149,36 @@ fn triangle_center() {
 mod verification {
     use super::*;
 
-    // #[kani::proof]
-    // fn success_example() {
-    //     let mut sum = 0;
-    //     for i in 1..4 {
-    //         sum += i;
-    //     }
-    //     assert_eq!(sum, 6);
-    // }
-
     #[kani::proof]
-    fn center_of_triangle_is_in_circumcircle() {
-        let x_factor = kani::any();
-        let y_factor = kani::any();
-        let triangle = Triangle {
-            vertices: [
-                Point { x: 0.0, y: 0.0 },
-                Point {
-                    x: x_factor,
-                    y: 0.0,
-                },
-                Point {
-                    x: 0.0,
-                    y: y_factor,
-                },
-            ],
-        };
-
-        let center = triangle.center();
-        assert!(triangle.circumcircle_contains(&center));
+    fn success_example() {
+        let mut sum = 0;
+        for i in 1..4 {
+            sum += i;
+        }
+        assert_eq!(sum, 6);
     }
+
+    // #[kani::proof]
+    // fn center_of_triangle_is_in_circumcircle() {
+    //     let x_factor = kani::any();
+    //     let y_factor = kani::any();
+    //     let triangle = Triangle {
+    //         vertices: [
+    //             Point { x: 0.0, y: 0.0 },
+    //             Point {
+    //                 x: x_factor,
+    //                 y: 0.0,
+    //             },
+    //             Point {
+    //                 x: 0.0,
+    //                 y: y_factor,
+    //             },
+    //         ],
+    //     };
+
+    //     let center = triangle.center();
+    //     assert!(triangle.circumcircle_contains(&center));
+    // }
 
     // #[kani::proof]
     // pub fn triangle_contains_vertex() {
