@@ -1,6 +1,6 @@
 on: [push]
 
-name: build
+name: Codecov
 
 jobs:
   check:
@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - uses: Swatinem/rust-cache@v2
 
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
@@ -19,6 +21,7 @@ jobs:
       - name: Run cargo-tarpaulin
         uses: actions-rs/tarpaulin@v0.1
         with:
+          version: '0.15.0'
           args: '-- --test-threads 1'
 
       - name: Upload to codecov.io
