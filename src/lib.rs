@@ -146,6 +146,7 @@ fn triangle_center() {
 }
 
 #[cfg(kani)]
+#[cfg(not(tarpaulin_include))]
 mod verification {
     use super::*;
 
