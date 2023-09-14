@@ -168,58 +168,44 @@ fn triangle_center() {
 #[cfg(kani)]
 #[cfg(not(tarpaulin_include))]
 mod verification {
+
     use super::*;
 
     #[kani::proof]
-    fn success_example() {
-        let mut sum = 0;
-        for i in 1..4 {
-            sum += i;
-        }
-        assert_eq!(sum, 6);
+    fn triangle_contains_vertex_constructed_from() {
+        let a = Point { x: 0.0, y: 0.0 };
+        let b = Point { x: 1.0, y: 0.0 };
+        let c = Point { x: 0.0, y: 1.0 };
+        let triangle = Triangle {
+            vertices: [a, b, c],
+        };
+
+        assert!(triangle.contains_vertex(&a));
+        assert!(triangle.contains_vertex(&b));
+        assert!(triangle.contains_vertex(&c));
     }
 
+    // powif64 and sqrtf64 are not supported by Kani
     // #[kani::proof]
     // fn center_of_triangle_is_in_circumcircle() {
-    //     let x_factor = kani::any();
-    //     let y_factor = kani::any();
     //     let triangle = Triangle {
     //         vertices: [
-    //             Point { x: 0.0, y: 0.0 },
     //             Point {
-    //                 x: x_factor,
-    //                 y: 0.0,
+    //                 x: kani::any(),
+    //                 y: kani::any(),
     //             },
     //             Point {
-    //                 x: 0.0,
-    //                 y: y_factor,
+    //                 x: kani::any(),
+    //                 y: kani::any(),
+    //             },
+    //             Point {
+    //                 x: kani::any(),
+    //                 y: kani::any(),
     //             },
     //         ],
     //     };
 
     //     let center = triangle.center();
     //     assert!(triangle.circumcircle_contains(&center));
-    // }
-
-    // #[kani::proof]
-    // pub fn triangle_contains_vertex() {
-    //     let factor: f64 = kani::any();
-    //     let triangle = Triangle {
-    //         vertices: [
-    //             Point { x: 0.0, y: 0.0 },
-    //             Point { x: 1.0 * factor, y: 0.0 },
-    //             Point { x: 0.0, y: 1.0 * factor },
-    //         ],
-    //     };
-
-    //     let small_triangle = Triangle {
-    //         vertices: [
-    //             Point { x: 0.0, y: 0.0 },
-    //             Point { x: 1.0, y: 0.0 },
-    //             Point { x: 0.0, y: 1.0 },
-    //         ],
-    //     };
-    //     let center = small_triangle.center();
-    //     assert!(triangle.contains_vertex(&center));
     // }
 }
