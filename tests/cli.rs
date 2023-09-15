@@ -5,7 +5,10 @@ use std::process::Command;
 #[test]
 fn exit_success() {
     let mut cmd = Command::cargo_bin("cdt-rs").unwrap();
+    cmd.arg("-v");
     cmd.arg("32");
+    cmd.arg("-t");
+    cmd.arg("3");
     cmd.assert().success();
 }
 
@@ -13,7 +16,10 @@ fn exit_success() {
 fn cdt_cli_args() -> Result<(), Box<dyn std::error::Error>> {
     let mut cmd = Command::cargo_bin("cdt-rs")?;
 
+    cmd.arg("-v");
     cmd.arg("32");
+    cmd.arg("-t");
+    cmd.arg("3");
 
     cmd.assert()
         .success()

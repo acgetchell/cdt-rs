@@ -1,5 +1,28 @@
-pub fn run(number_of_vertices: u32) -> Result<(), Box<dyn std::error::Error>> {
-    println!("Number of vertices: {}", number_of_vertices);
+use clap::Parser;
+
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+pub struct Config {
+    /// Number of vertices
+    #[arg(short, long, value_parser = clap::value_parser!(u32).range(3..))]
+    vertices: u32,
+
+    /// Number of timeslices
+    #[arg(short, long, value_parser = clap::value_parser!(u32).range(1..))]
+    timeslices: u32,
+}
+
+impl Config {
+    pub fn build() -> Self {
+        Self::parse()
+    }
+}
+
+pub fn run(config: Config) -> Result<(), Box<dyn std::error::Error>> {
+    let vertices = config.vertices;
+    let timeslices = config.timeslices;
+    println!("Number of vertices: {}", vertices);
+    println!("Number of timeslices: {}", timeslices);
     let points = vec![
         Point { x: 0.0, y: 0.0 },
         Point { x: 1.0, y: 0.0 },

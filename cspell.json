@@ -22,6 +22,7 @@
         "serde",
         "sqrtf",
         "termtree",
+        "timeslices",
         "xcenter",
         "xmax",
         "xmin",
