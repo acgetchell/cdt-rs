@@ -42,3 +42,12 @@ pub fn run(config: Config) -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+
+#[test]
+fn test_run() {
+    let config = Config {
+        vertices: 32,
+        timeslices: 3,
+    };
+    assert!(run(config).is_ok());
+}
