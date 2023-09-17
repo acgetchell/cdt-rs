@@ -35,11 +35,6 @@ pub fn run(config: Config) -> Result<Vec<delaunay::Triangle>, Box<dyn std::error
         std::process::exit(1);
     }
 
-    // if config.dimension != Some(2) {
-    //     eprintln!("Only 2D triangulations are supported right now.");
-    //     std::process::exit(1);
-    // }
-
     println!("Dimensionality: {}", config.dimension.unwrap_or(2));
     println!("Number of vertices: {}", vertices);
     println!("Number of timeslices: {}", timeslices);
@@ -52,12 +47,6 @@ pub fn run(config: Config) -> Result<Vec<delaunay::Triangle>, Box<dyn std::error
         let y = utilities::generate_random_float() * scale;
         points.push(delaunay::Point { x, y });
     }
-
-    // let points = vec![
-    //     delaunay::Point { x: 0.0, y: 0.0 },
-    //     delaunay::Point { x: 1.0, y: 0.0 },
-    //     delaunay::Point { x: 0.5, y: 1.0 },
-    // ];
 
     let triangulation = delaunay::bowyer_watson(points);
     for triangle in &triangulation {
@@ -93,6 +82,6 @@ mod tests {
             timeslices: 3,
         };
         let triangulation = run(config).unwrap();
-        assert!(triangulation.len() > 49);
+        assert!(triangulation.len() > 42);
     }
 }

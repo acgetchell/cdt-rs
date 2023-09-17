@@ -1,4 +1,4 @@
-use rand::prelude::*;
+use rand::Rng;
 
 pub fn generate_random_float() -> f64 {
     let mut rng = rand::thread_rng();

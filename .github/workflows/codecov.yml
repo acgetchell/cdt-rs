@@ -4,7 +4,7 @@ name: Codecov
 
 jobs:
   check:
-    name: Rust project
+    name: Codecov via tarpaulin
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
