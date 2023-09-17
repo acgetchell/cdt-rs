@@ -110,39 +110,43 @@ pub fn bowyer_watson(points: Vec<Point>) -> Vec<Triangle> {
     triangles
 }
 
-#[test]
-fn delaunay_triangulation_construction() {
-    let points = vec![
-        Point { x: 0.0, y: 0.0 },
-        Point { x: 1.0, y: 0.0 },
-        Point { x: 0.5, y: 1.0 },
-    ];
-
-    let triangulation = bowyer_watson(points);
-
-    assert_eq!(triangulation.len(), 1);
-    assert!(triangulation.contains(&Triangle {
-        vertices: [
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn delaunay_triangulation_construction() {
+        let points = vec![
             Point { x: 0.0, y: 0.0 },
             Point { x: 1.0, y: 0.0 },
             Point { x: 0.5, y: 1.0 },
-        ]
-    }));
-}
+        ];
 
-#[test]
-fn triangle_center() {
-    let triangle = Triangle {
-        vertices: [
-            Point { x: 0.0, y: 0.0 },
-            Point { x: 1.0, y: 0.0 },
-            Point { x: 0.0, y: 1.0 },
-        ],
-    };
+        let triangulation = bowyer_watson(points);
 
-    let center = triangle.center();
-    println!("{:?}", center);
-    assert_eq!(center, Point { x: 0.5, y: 0.5 });
+        assert_eq!(triangulation.len(), 1);
+        assert!(triangulation.contains(&Triangle {
+            vertices: [
+                Point { x: 0.0, y: 0.0 },
+                Point { x: 1.0, y: 0.0 },
+                Point { x: 0.5, y: 1.0 },
+            ]
+        }));
+    }
+
+    #[test]
+    fn triangle_center() {
+        let triangle = Triangle {
+            vertices: [
+                Point { x: 0.0, y: 0.0 },
+                Point { x: 1.0, y: 0.0 },
+                Point { x: 0.0, y: 1.0 },
+            ],
+        };
+
+        let center = triangle.center();
+        println!("{:?}", center);
+        assert_eq!(center, Point { x: 0.5, y: 0.5 });
+    }
 }
 
 #[cfg(kani)]

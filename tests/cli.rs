@@ -38,3 +38,39 @@ fn cdt_cli_no_args() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+
+#[test]
+fn cdt_cli_invalid_args() -> Result<(), Box<dyn std::error::Error>> {
+    let mut cmd = Command::cargo_bin("cdt-rs")?;
+
+    cmd.arg("-v");
+    cmd.arg("32");
+    cmd.arg("-t");
+    cmd.arg("3");
+    cmd.arg("-d");
+    cmd.arg("5");
+
+    cmd.assert().failure().stderr(predicate::str::contains(
+        "error: invalid value '5' for '--dimension <DIMENSION>': 5 is not in 2..4",
+    ));
+
+    Ok(())
+}
+
+#[test]
+fn cdt_cli_out_of_range_args() -> Result<(), Box<dyn std::error::Error>> {
+    let mut cmd = Command::cargo_bin("cdt-rs")?;
+
+    cmd.arg("-v");
+    cmd.arg("32");
+    cmd.arg("-t");
+    cmd.arg("3");
+    cmd.arg("-d");
+    cmd.arg("3");
+
+    cmd.assert().failure().stderr(predicate::str::contains(
+        "Only 2D triangulations are supported right now.",
+    ));
+
+    Ok(())
+}
