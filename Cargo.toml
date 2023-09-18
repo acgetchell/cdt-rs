@@ -12,6 +12,7 @@ readme = "README.md"
 clap = { version = "4.4.3", features = ["derive"] }
 float-ord = "0.3.2"
 rand = "0.8.5"
+spade = { version = "2.2.0", features = ["serde"] }
 
 [dev-dependencies]
 assert_cmd = "2.0.12"

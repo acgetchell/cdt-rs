@@ -1,6 +1,8 @@
 use clap::Parser;
+use spade::InsertionError;
+use spade::Triangulation;
 
-pub mod delaunay;
+pub mod triangulation;
 
 pub mod utilities;
 
@@ -26,7 +28,10 @@ impl Config {
     }
 }
 
-pub fn run(config: Config) -> Result<Vec<delaunay::Triangle>, Box<dyn std::error::Error>> {
+// pub fn run(config: Config) -> Result<Vec<triangulation::Triangle>, Box<dyn std::error::Error>> {
+pub fn run(
+    config: &Config,
+) -> Result<spade::DelaunayTriangulation<spade::Point2<f64>>, InsertionError> {
     let vertices = config.vertices;
     let timeslices = config.timeslices;
 
@@ -39,29 +44,35 @@ pub fn run(config: Config) -> Result<Vec<delaunay::Triangle>, Box<dyn std::error
     println!("Number of vertices: {}", vertices);
     println!("Number of timeslices: {}", timeslices);
 
-    let scale = 10.0; // The size of the grid
-    let mut points = Vec::new();
+    let triangulation = triangulation::generate_random_delaunay2(vertices)?;
 
-    for _n in 1..vertices {
-        let x = utilities::generate_random_float() * scale;
-        let y = utilities::generate_random_float() * scale;
-        points.push(delaunay::Point { x, y });
-    }
+    // let scale = 10.0; // The size of the grid
+    // let mut points = Vec::new();
 
-    let triangulation = delaunay::bowyer_watson(points);
-    for triangle in &triangulation {
-        println!(
-            "Triangle: {:?} Center: {:?}",
-            triangle.vertices,
-            triangle.center()
-        );
+    // for _n in 1..vertices {
+    //     let x = utilities::generate_random_float() * scale;
+    //     let y = utilities::generate_random_float() * scale;
+    //     points.push(triangulation::Point { x, y });
+    // }
+
+    // let triangulation = triangulation::bowyer_watson(points);
+    // for triangle in &triangulation {
+    //     println!(
+    //         "Triangle: {:?} Center: {:?}",
+    //         triangle.vertices,
+    //         triangle.center()
+    //     );
+    // }
+
+    for vertex in triangulation.fixed_vertices() {
+        println!("Vertex: {:?}", vertex);
     }
 
     Ok(triangulation)
 }
 
 #[cfg(test)]
-mod tests {
+mod lib_tests {
     use super::*;
     #[test]
     fn test_run() {
@@ -71,7 +82,7 @@ mod tests {
             timeslices: 3,
         };
         assert!(config.dimension.is_some());
-        assert!(run(config).is_ok());
+        assert!(run(&config).is_ok());
     }
 
     #[test]
@@ -81,7 +92,10 @@ mod tests {
             vertices: 32,
             timeslices: 3,
         };
-        let triangulation = run(config).unwrap();
-        assert!(triangulation.len() > 42);
+        let triangulation = run(&config).unwrap();
+        assert_eq!(
+            triangulation.num_vertices(),
+            config.vertices.try_into().unwrap()
+        );
     }
 }
