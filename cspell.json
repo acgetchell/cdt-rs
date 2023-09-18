@@ -20,6 +20,7 @@
         "itertools",
         "kani",
         "libc",
+        "MCMC",
         "memchr",
         "msvc",
         "powi",
