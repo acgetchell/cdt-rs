@@ -30,6 +30,7 @@
         "strsim",
         "termtree",
         "timeslices",
+        "Timevalue",
         "wincon",
         "xcenter",
         "xmax",

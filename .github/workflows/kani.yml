@@ -1,7 +1,7 @@
 name: Kani CI
 on:
   pull_request:
-  push:
+  workflow_dispatch:
 jobs:
   run-kani:
     runs-on: ubuntu-20.04

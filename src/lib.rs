@@ -64,8 +64,12 @@ pub fn run(
     //     );
     // }
 
-    for vertex in triangulation.fixed_vertices() {
-        println!("Vertex: {:?}", vertex);
+    for vertex in triangulation.vertices() {
+        println!("Vertex: {:?}", vertex.position());
+    }
+
+    for triangle in triangulation.inner_faces() {
+        println!("Triangle: {:?}", triangle.positions());
     }
 
     Ok(triangulation)
