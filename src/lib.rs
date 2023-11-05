@@ -46,6 +46,8 @@ pub fn run(
 
     let triangulation = triangulation::generate_random_delaunay2(vertices)?;
 
+    println!("Number of triangles: {}", triangulation.num_inner_faces());
+
     // let scale = 10.0; // The size of the grid
     // let mut points = Vec::new();
 
