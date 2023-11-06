@@ -1,10 +1,11 @@
 name: Kani CI
 on:
+  push:
   pull_request:
   workflow_dispatch:
 jobs:
   run-kani:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: 'Checkout your code.'
         uses: actions/checkout@v3
@@ -12,4 +13,4 @@ jobs:
       - uses: Swatinem/rust-cache@v2
 
       - name: Kani Rust Verifier
-        uses: model-checking/kani-github-action@v0.36
+        uses: model-checking/kani-github-action@v1
