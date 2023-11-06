@@ -1,7 +1,9 @@
 # cdt-rs
 
 [![CI](https://github.com/acgetchell/cdt/actions/workflows/ci.yml/badge.svg)](https://github.com/acgetchell/cdt/actions/workflows/ci.yml)
+[![rust-clippy analyze](https://github.com/acgetchell/cdt-rs/actions/workflows/rust-clippy.yml/badge.svg)](https://github.com/acgetchell/cdt-rs/actions/workflows/rust-clippy.yml)
 [![Codecov](https://codecov.io/gh/acgetchell/cdt-rs/graph/badge.svg?token=CsbOJBypGC)](https://codecov.io/gh/acgetchell/cdt-rs)
+[![Kani CI](https://github.com/acgetchell/cdt-rs/actions/workflows/kani.yml/badge.svg)](https://github.com/acgetchell/cdt-rs/actions/workflows/kani.yml)
 
 Causal Dynamical Triangulations using Constrained Delaunay Triangulations in Rust
 
@@ -12,7 +14,7 @@ For an introduction to Causal Dynamical Triangulations, see [this paper](https:/
 ## Roadmap
 
 - [x] Use [Kani] to verify correctness
-- [ ] Use an existing Rust Delaunay triangulation library, or write one that can be verified by [Kani]?
+- [x] Use an existing Rust Delaunay triangulation library, or write one that can be verified by [Kani]?
 - [x] 2D Delaunay triangulation
 - [ ] 1+1 foliation
 - [ ] 2D ergodic moves
@@ -36,8 +38,3 @@ For an introduction to Causal Dynamical Triangulations, see [this paper](https:/
 - [ ] Quantize spacetime!
 
 ## Issues
-
-[Kani] and [Spade] [don't get along](https://github.com/model-checking/kani/issues/2776).
-
-[Kani]: https://crates.io/crates/kani-verifier
-[Spade]: https://crates.io/crates/spade
