@@ -1,4 +1,6 @@
-use spade::{DelaunayTriangulation, InsertionError, Point2, Triangulation};
+use spade::{validate_vertex, DelaunayTriangulation, InsertionError, Point2, Triangulation};
+
+use crate::utilities::generate_random_float;
 
 // #[derive(Debug, PartialEq, Clone, Copy)]
 // pub struct Point {
@@ -116,14 +118,27 @@ pub fn generate_random_delaunay2(
     number_of_vertices: u32,
 ) -> Result<spade::DelaunayTriangulation<spade::Point2<f64>>, InsertionError> {
     let mut triangulation: DelaunayTriangulation<_> = DelaunayTriangulation::new();
-    let scale = 10.0; // The size of the grid
+    let mut points_inserted = 0;
     for _n in 0..number_of_vertices {
-        let x = rand::random::<f64>() * scale;
-        let y = rand::random::<f64>() * scale;
-        triangulation.insert(Point2::new(x, y))?;
+        let point = generate_random_vertex();
+        if validate_vertex(&point).is_ok() {
+            triangulation.insert(point)?;
+        } else {
+            println!("Failed to insert point: {:?}", point);
+        }
+        points_inserted += 1;
     }
 
+    println!("Number of points inserted: {}", points_inserted);
+
     Ok(triangulation)
+}
+
+fn generate_random_vertex() -> Point2<f64> {
+    let scale = 10.0; // The size of the grid
+    let x = generate_random_float() * scale;
+    let y = generate_random_float() * scale;
+    Point2::new(x, y)
 }
 
 #[cfg(test)]
@@ -163,6 +178,16 @@ mod tests {
     //     println!("{:?}", center);
     //     assert_eq!(center, Point { x: 0.5, y: 0.5 });
     // }
+
+    #[test]
+    fn random_point_construction() {
+        let point = generate_random_vertex();
+
+        assert!(point.x > 0.0);
+        assert!(point.x < 10.0);
+        assert!(point.y > 0.0);
+        assert!(point.y < 10.0);
+    }
 
     #[test]
     fn spade_triangulation_construction() {
