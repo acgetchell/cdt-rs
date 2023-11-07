@@ -2,6 +2,8 @@ use clap::Parser;
 use spade::InsertionError;
 use spade::Triangulation;
 
+use crate::triangulation::triangulations::generate_random_delaunay2;
+
 pub mod triangulation;
 
 pub mod utilities;
@@ -44,7 +46,7 @@ pub fn run(
     println!("Number of vertices: {}", vertices);
     println!("Number of timeslices: {}", timeslices);
 
-    let triangulation = triangulation::generate_random_delaunay2(vertices)?;
+    let triangulation = generate_random_delaunay2(vertices)?;
 
     println!("Number of triangles: {}", triangulation.num_inner_faces());
 
