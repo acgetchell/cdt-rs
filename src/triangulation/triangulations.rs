@@ -8,7 +8,7 @@ pub fn generate_random_delaunay2(
     let mut triangulation: DelaunayTriangulation<_> = DelaunayTriangulation::new();
 
     for _n in 0..number_of_vertices {
-        let point = generate_random_vertex();
+        let point = generate_random_vertex(10.0);
         validate_vertex(&point)?;
         triangulation.insert(point)?;
     }
@@ -16,8 +16,8 @@ pub fn generate_random_delaunay2(
     Ok(triangulation)
 }
 
-fn generate_random_vertex() -> Point2<f64> {
-    let scale = 10.0; // The size of the grid
+fn generate_random_vertex(scale: f64) -> Point2<f64> {
+    // let scale = 10.0; // The size of the grid
     let x = generate_random_float() * scale;
     let y = generate_random_float() * scale;
     Point2::new(x, y)
@@ -29,12 +29,13 @@ mod tests {
 
     #[test]
     fn random_point_construction() {
-        let point = generate_random_vertex();
+        let scale = 10.0;
+        let point = generate_random_vertex(scale);
 
         assert!(point.x > 0.0);
-        assert!(point.x < 10.0);
+        assert!(point.x < scale);
         assert!(point.y > 0.0);
-        assert!(point.y < 10.0);
+        assert!(point.y < scale);
     }
 
     #[test]

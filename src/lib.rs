@@ -1,8 +1,12 @@
+// #![warn(missing_docs)]
+
+//! Using <https://crates.io/crates/clap> for command line arguments
+//! Using <https://crates.io/crates/spade> for 2D Delaunay triangulation
 use clap::Parser;
 use spade::InsertionError;
 use spade::Triangulation;
 
-use crate::triangulation::triangulations::generate_random_delaunay2;
+use triangulation::triangulations::generate_random_delaunay2;
 
 pub mod triangulation;
 
