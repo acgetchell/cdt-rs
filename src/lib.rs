@@ -6,11 +6,12 @@ use clap::Parser;
 use spade::InsertionError;
 use spade::Triangulation;
 
-mod triangulation {
+mod triangulations {
     pub mod spade_triangulations;
+    pub mod triangulation2;
 }
 
-use triangulation::spade_triangulations::generate_random_delaunay2;
+use triangulations::spade_triangulations::generate_random_delaunay2;
 
 /// Contains utility functions for the `cdt-rs` crate.
 pub mod utilities;
