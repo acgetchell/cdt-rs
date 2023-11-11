@@ -1,5 +1,3 @@
-pub mod triangulations;
-
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Point {
     pub x: f64,

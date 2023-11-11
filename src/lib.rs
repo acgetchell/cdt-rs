@@ -6,14 +6,18 @@ use clap::Parser;
 use spade::InsertionError;
 use spade::Triangulation;
 
-use triangulation::triangulations::generate_random_delaunay2;
+mod triangulation {
+    pub mod spade_triangulations;
+}
 
-pub mod triangulation;
+use triangulation::spade_triangulations::generate_random_delaunay2;
 
+/// Contains utility functions for the `cdt-rs` crate.
 pub mod utilities;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
+/// Configuration options for the `cdt-rs` crate.
 pub struct Config {
     /// Dimensionality of the triangulation
     #[arg(short, long, value_parser = clap::value_parser!(u32).range(2..4))]
@@ -29,6 +33,7 @@ pub struct Config {
 }
 
 impl Config {
+    /// Builds a new instance of `Config`.
     pub fn build() -> Self {
         Self::parse()
     }
