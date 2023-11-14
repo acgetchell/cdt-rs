@@ -40,7 +40,7 @@ For an introduction to Causal Dynamical Triangulations, see [this paper](https:/
 
 ## Issues
 
-- [ ] [Spade] 2.3.0 is [broken](https://github.com/Stoeoef/spade/issues/94)
+- [x] [Spade] 2.3.0 is [broken](https://github.com/Stoeoef/spade/issues/94) - Fixed with [Spade] 2.3.1
 
 [Spade]: https://github.com/Stoeoef/spade
 [Kani]: https://model-checking.github.io/kani/install-guide.html
