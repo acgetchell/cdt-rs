@@ -14,7 +14,7 @@ For an introduction to Causal Dynamical Triangulations, see [this paper](https:/
 ## Roadmap
 
 - [x] Use [Kani] to verify correctness
-- [x] Use an existing Rust Delaunay triangulation library, or write one that can be verified by [Kani]?
+- [x] Use an existing Rust Delaunay triangulation library (e.g. [Spade]), or write one that can be verified by [Kani]?
 - [x] 2D Delaunay triangulation
 - [ ] 1+1 foliation
 - [ ] 2D ergodic moves
@@ -38,3 +38,8 @@ For an introduction to Causal Dynamical Triangulations, see [this paper](https:/
 - [ ] Quantize spacetime!
 
 ## Issues
+
+- [ ] [Spade] 2.3.0 is [broken](https://github.com/Stoeoef/spade/issues/94)
+
+[Spade]: https://github.com/Stoeoef/spade
+[Kani]: https://model-checking.github.io/kani/install-guide.html
