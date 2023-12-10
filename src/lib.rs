@@ -9,6 +9,7 @@ use spade::Triangulation;
 mod triangulations {
     pub mod spade_triangulations;
     pub mod triangulation_2;
+    pub mod dcel;
 }
 
 use triangulations::spade_triangulations::generate_random_delaunay2;

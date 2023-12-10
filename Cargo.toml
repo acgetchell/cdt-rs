@@ -9,10 +9,10 @@ readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "4.4.8", features = ["derive"] }
+clap = { version = "4.4.11", features = ["derive"] }
 float-ord = "0.3.2"
 rand = "0.8.5"
-spade = { version = "2.3.1", features = ["serde"] }
+spade = { version = "2.4.1", features = ["serde"] }
 assert_cmd = "2.0.12"
 
 

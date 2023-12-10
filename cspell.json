@@ -15,6 +15,7 @@
         "Codecov",
         "colorchoice",
         "corasick",
+        "dcel",
         "difflib",
         "Getchell",
         "gnullvm",
