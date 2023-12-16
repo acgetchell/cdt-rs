@@ -7,7 +7,6 @@ use spade::InsertionError;
 use spade::Triangulation;
 
 mod triangulations {
-    pub mod dcel;
     pub mod spade_triangulations;
     pub mod triangulation_2;
 }

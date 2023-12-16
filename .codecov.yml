@@ -1,2 +1,3 @@
 ignore:
   - "src/lib.rs"
+  - "src/main.rs"
