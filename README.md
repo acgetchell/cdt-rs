@@ -4,7 +4,7 @@
 [![rust-clippy analyze](https://github.com/acgetchell/cdt-rs/actions/workflows/rust-clippy.yml/badge.svg)](https://github.com/acgetchell/cdt-rs/actions/workflows/rust-clippy.yml)
 [![Codecov](https://codecov.io/gh/acgetchell/cdt-rs/graph/badge.svg?token=CsbOJBypGC)](https://codecov.io/gh/acgetchell/cdt-rs)
 [![Kani CI](https://github.com/acgetchell/cdt-rs/actions/workflows/kani.yml/badge.svg)](https://github.com/acgetchell/cdt-rs/actions/workflows/kani.yml)
-[![Security audit](https://github.com/acgetchell/cdt-rs/actions/workflows/audit.yml/badge.svg)](https://github.com/acgetchell/cdt-rs/actions/workflows/audit.yml)
+[![Audit dependencies](https://github.com/acgetchell/cdt-rs/actions/workflows/audit.yml/badge.svg)](https://github.com/acgetchell/cdt-rs/actions/workflows/audit.yml)
 
 Causal Dynamical Triangulations using Constrained Delaunay Triangulations in Rust
 
