@@ -40,7 +40,7 @@ jobs:
 
       - name: Run tarpaulin
         run: |
-          export JWT_SECRET=secret
+          # export VAR=var
           cargo tarpaulin --out Xml -- --test-threads=1
       
       - name: Upload coverage reports to Codecov
