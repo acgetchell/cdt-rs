@@ -37,6 +37,7 @@ impl Triangle {
         distance < radius
     }
 
+    #[allow(dead_code)]
     pub fn center(&self) -> Point {
         let [pa, pb, pc] = self.vertices;
 
