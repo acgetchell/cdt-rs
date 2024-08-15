@@ -12,10 +12,12 @@ pub struct Triangle {
 }
 
 impl Triangle {
+    #[allow(dead_code)]
     fn contains_vertex(&self, point: &Point) -> bool {
         self.vertices.contains(point)
     }
 
+    #[allow(dead_code)]
     fn circumcircle_contains(&self, point: &Point) -> bool {
         let [pa, pb, pc] = self.vertices;
 
@@ -57,6 +59,7 @@ impl Triangle {
     }
 }
 
+#[allow(dead_code)]
 pub fn bowyer_watson(points: Vec<Point>) -> Vec<Triangle> {
     let mut triangles = Vec::new();
 
