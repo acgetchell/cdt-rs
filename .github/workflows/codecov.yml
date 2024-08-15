@@ -38,6 +38,11 @@ jobs:
       - name: Install tarpaulin
         run: cargo install cargo-tarpaulin
 
+      - name: Install kani
+        run: |
+          cargo install kani-verifier
+          cargo kani setup
+
       - name: Run tarpaulin
         run: |
           # export VAR=var
